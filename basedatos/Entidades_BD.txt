@@ -1,0 +1,14 @@
+BASE DE DATOS
+------------------------------------------------------------
+------------------------------------------------------------
+Entitades: 
+	- Usuario
+	- Rol
+	- Cliente
+	- Nino
+	- Visita
+	- Reserva
+	- Evento
+	- Cotizacion
+	- pagoVisita
+	- pagoEvento

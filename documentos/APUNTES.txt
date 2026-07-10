@@ -1,0 +1,23 @@
+APUNTES
+
+Notificacion en tiempo real sobre la gente en piso Esta funcionalidad permite:
+Conocer la ocupación actual del playground.
+Controlar el aforo máximo.
+Mejorar la supervisión de los niños.
+Obtener estadísticas de asistencia en tiempo real.
+Facilitar la toma de decisiones operativas.
+Para una tesis o proyecto empresarial, esta característica es muy valiosa porque aporta el componente de gestión en tiempo real, diferenciándolo de un simple sistema CRUD de clientes y reservas. 🚀🎠📊
+
+Apunte para DTOs
+no es recomendable usar un único DTO para todas las operaciones. Lo ideal es tener DTOs según la funcionalidad.
+
+´-------------------------------------------------------------------
+Pasos para realizar backend en Springboot
+
+1 Base de datos
+2 Entidades
+3 Repositorios
+4 Dtos
+5 Mappers
+6 Service
+7 Controller
