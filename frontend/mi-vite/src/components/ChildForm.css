@@ -1,0 +1,76 @@
+.dashboard{
+    display:flex;
+    height:100vh;
+    overflow:hidden;
+}
+
+
+
+.dashboard-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+}
+
+
+
+.dashboard-body{
+    flex:1;
+    padding:20px;
+    overflow:hidden;
+}
+
+
+.registro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+    height:calc(100vh - 180px);
+}
+
+
+.panel{
+    background:#ffffff;
+    border-radius:15px;
+    padding:20px;
+    overflow-y:auto;
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+}
+
+
+.panel::-webkit-scrollbar{
+    width:8px;
+}
+
+
+.panel::-webkit-scrollbar-thumb{
+    border-radius:10px;
+}
+
+
+
+.seleccionar{
+    height:300px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#6B7280;
+}
+
+
+/* Tablet */
+
+@media(max-width:1024px){
+
+    .registro-grid{
+        grid-template-columns:1fr;
+        overflow:auto;
+    }
+
+
+    .panel{
+        height:auto;
+    }
+
+
+}

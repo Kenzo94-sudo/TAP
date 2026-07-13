@@ -1,0 +1,70 @@
+.client-form{
+    background:#FFFFFF;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+    width:100%;
+   box-sizing:border-box;
+
+}
+
+.client-form .MuiTextField-root{
+    width:100%;
+    margin-bottom:12px;
+}
+
+.client-form .MuiOutlinedInput-root{
+    border-radius:10px;
+}
+
+.client-form-buttons{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:20px;
+}
+
+.client-form-buttons button{
+    min-width:140px;
+    height:42px;
+    border-radius:10px;
+    text-transform:none;
+    font-weight:600;
+}
+
+.btn-save{
+    background:#005A9C !important;
+    color:white !important;
+}
+
+
+.btn-clear{
+    border:1px solid #D1D5DB !important;
+}
+
+
+
+
+@media(max-width:768px){
+
+    .client-form{
+
+        padding:15px;
+
+    }
+
+
+    .client-form-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .client-form-buttons button{
+
+        width:100%;
+
+    }
+
+}

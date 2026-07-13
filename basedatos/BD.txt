@@ -1,115 +1,131 @@
 BASE DE DATOS
 ------------------------------------------------------------
 ------------------------------------------------------------
-CREATE database db_yupi;
-use db_yupi;
+CREATE DATABASE playground_db;
+use playground_db;
 
-CREATE TABLE usuario (
-	id_usuario int auto_increment primary key,
-    id_rol int not null,
-    username varchar(100) not null,
-    password varchar(100) not null,
-    foreign key (id_rol)
-    references rol(id_rol));
-    
-CREATE TABLE rol (
-	id_rol int auto_increment primary key,
-    nombre varchar(100) not null,
-    categoria enum('Administrador','Recepcionista') not null );
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('ADMIN','RECEPCIONISTA') NOT NULL,
+    estado BOOLEAN DEFAULT TRUE,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-CREATE TABLE cliente (
-	id_cliente int auto_increment PRIMARY KEY,
-	id_nino int not null,
-    nombre VARCHAR(100) not null,
-    apellido VARCHAR(100) not null,
-    email VARCHAR(100) UNIQUE not null,
-    fecha_registro DATETIME DEFAULT CURRENT_TIMESTAMP,
-    telefono int not null,
-    direccion VARCHAR(100) not null,
-    dni VARCHAR(8) not null,
-	FOREIGN KEY (id_nino) REFERENCES nino(id_nino));
+CREATE TABLE clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    dni CHAR(8) NOT NULL UNIQUE,
+    celular CHAR(9),
+    correo VARCHAR(100),
+    direccion VARCHAR(150),
+    distrito VARCHAR(80),
+    genero ENUM('M','F'),
+    observacion VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-CREATE TABLE nino (
-	id_nino int auto_increment PRIMARY KEY,
-    id_cliente int not null,
-    nombres varchar(100) not null,
-    fecha_nacimiento DATE,
+CREATE TABLE ninos (
+    id_nino INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    genero ENUM('M','F'),
     alergias VARCHAR(255),
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente));
-    
+    observaciones VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_nino_cliente
+        FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
 
-CREATE TABLE acompañante (
-	id_acompañante int autoincrement PRIMARY KEY,
-	id_cliente int not null,
-	nombres varchar(100) not null,
-	dni varchar(100) not null,
-	FOREIGN KEY (id_cliente) REFERENCES cliente (id_cliente));
+CREATE TABLE ingresos (
+    id_ingreso INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_nino INT NOT NULL,
+    fecha_ingreso DATE NOT NULL,
+    hora_ingreso TIME NOT NULL,
+    hora_salida TIME,
+    tiempo_permanencia INT,
+    estado ENUM('DENTRO','SALIO') DEFAULT 'DENTRO',
+    observaciones VARCHAR(250),
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_nino)
+        REFERENCES ninos(id_nino)
+);
 
-CREATE TABLE visita (
-    id_visita int auto_increment PRIMARY KEY,
-    id_nino int not null,
-    id_cliente int not null,
-    fecha DATE not null,
-    hora_ingreso DATETIME not null,
-    hora_salida DATETIME,
-    tiempo_contratado int not null,
-    estado enum('Activa', 'Finalizada') not null,
-    foreign key (id_nino) references nino(id_nino),
-    foreign key(id_cliente) references 
-	cliente(id_cliente));
-    
-CREATE TABLE reserva (
-	id_reserva int auto_increment primary key,
-    id_cliente int not null,
-    fecha_evento date not null,
-    cantidad_ninos int not null,
-    estado enum('Pendiente', 
-    'Confirmada', 
-    'Cancelada', 
-    ' Finalizada') not null default 'Pendiente',
-    hora_inicio time,
-    hora_fin time,
-    monto_total decimal(10,2),
-disponibilidad 
-    foreign key (id_cliente) 
-    references cliente(id_cliente));
-            
-CREATE TABLE cotizacion (
-	id_cotizacion int auto_increment primary key,
-    id_cliente int UNIQUE not null,
-    fecha date not null,
-    monto_total decimal(10,2) not null,
-    estado enum('Cotizado','No cotizado'),
-    foreign key (id_cliente) references cliente(id_cliente),
-    foreign key (id_evento) references evento(id_evento));
-    
-CREATE TABLE pagoVisita (
-	id_pago_visita int auto_increment primary key,
-    id_visita int not null,
-    monto decimal(10,2) not null,
-    fecha_pago datetime not null,
-    metodo_pago enum('Efectivo', 'Yape','Plin','Tarjeta') NOT NULL,
-    foreign key(id_visita) references visita(id_visita)
-    );
+CREATE TABLE cotizaciones (
+    id_cotizacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    fecha_cotizacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fecha_evento DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    cantidad_ninos INT NOT NULL,
+    paquete VARCHAR(100) NOT NULL,
+    costo_paquete DECIMAL(10,2) NOT NULL,
+    servicios_adicionales VARCHAR(255),
+    descuento DECIMAL(10,2) DEFAULT 0,
+    subtotal DECIMAL(10,2) NOT NULL,
+    igv DECIMAL(10,2) DEFAULT 0,
+    total DECIMAL(10,2) NOT NULL,
+    estado ENUM(
+        'PENDIENTE',
+        'ACEPTADA',
+        'RECHAZADA',
+        'VENCIDA'
+    ) DEFAULT 'PENDIENTE',
+    observaciones VARCHAR(255),
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente)
+);
 
-CREATE TABLE pagoEvento (
-	id_pago_evento int auto_increment primary key,
-    id_cotizacion UNIQUE int not null,
-    monto decimal(10,2) not null,
-    fecha_pago datetime not null,
-    metodo_pago enum('Efectivo', 'Yape','Plin','Tarjeta') NOT NULL,
-	foreign key (id_evento) references evento(id_evento)
-    );
+CREATE TABLE reservas (
+    id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    fecha_evento DATE,
+    hora_inicio TIME,
+    hora_fin TIME,
+    cantidad_ninos INT,
+    tipo_evento VARCHAR(80),
+    estado ENUM('PENDIENTE','CONFIRMADA','CANCELADA'),
+    observacion VARCHAR(250),
+    FOREIGN KEY (id_cliente)
+    REFERENCES clientes(id_cliente)
+);
 
 CREATE TABLE caja (
-	id_caja int auto_increment primary key,
-	cajaApertura decimal(10,2) not null,
-	cajaCierre decimal(10,2),
-	fecha datetime not null,
-	totalIngresos decimal(10,2) default 0,
-	totalEgresos decimal(10,2) default 0,
-	saldoFinal decimal(10,2),
-	fechaHoraCierre datetime,
-	id_usuario int not null,
-	foreing key (id_usuario) references usuario		(id_usuario));
+    id_caja INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    fecha DATE,
+    hora_apertura TIME,
+    monto_inicial DECIMAL(10,2),
+    hora_cierre TIME,
+    monto_final DECIMAL(10,2),
+    estado ENUM('ABIERTA','CERRADA'),
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuarios(id_usuario)
+);
+
+CREATE TABLE pagos (
+    id_pago INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_caja INT NOT NULL,
+    monto DECIMAL(10,2),
+    metodo_pago ENUM('EFECTIVO','YAPE','PLIN','TARJETA'),
+    estado ENUM('PENDIENTE','PAGADO'),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente)
+    REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_caja)
+    REFERENCES caja(id_caja)
+);
 

@@ -16,28 +16,39 @@ body{
 }
 
 .login-container{
-    width:100vw;
-    height:100vh;
+    width:100%;
+    min-height:100vh;
+
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
 
     background-size:cover;
     background-position:center;
     background-repeat:no-repeat;
 }
 
+.background-image{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+    object-position:center;
+}
 
 .login-container-card{
+    position:absolute;
+    top:0;
+    right:0;
     width:50%;
     height:100%;
-
     display:flex;
     justify-content:center;
     align-items:center;
-
-    transform:translateX(90%);
+    z-index:2;
 }
 
 .login-card{
-    width:650px;
+    width:min(650px,90%);
     background:white;
     border-radius:35px;
     padding:50px;
@@ -60,7 +71,8 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    color:#0b72d8
+    color:#0b72d8;
+    flex-shrink:0; 
 }
 
 .text-title{
@@ -68,13 +80,14 @@ body{
     flex-direction:column;
     justify-content:center;
 
-    font-size:24px;
+    font-size:clamp(18px,2vw,24px);
     font-family: 'Poppins', 'sans-serif';
 }
 
 .text-title h1 {
   margin: 0;           /* elimina el margen superior e inferior */
-  line-height: 1.2;    /* ajusta la altura de línea */
+  line-height: 1.2;
+  font-size:clamp(2rem,3vw,3rem);   /* ajusta la altura de línea */
 }
 
 .subtitle {
@@ -111,10 +124,11 @@ body{
 }
 
 .input-group input{
+    width:100%;
     flex:1;
     border:none;
     outline:none;
-    font-size:18px;
+    font-size:16px;
     padding-left:15px;
 }
 
@@ -141,7 +155,7 @@ body{
     border:none;
     background:#0b72d8;
     color:white;
-    font-size:22px;
+    font-size:clamp(16px,2vw,20px);
     border-radius:18px;
     padding:18px;
     display:flex;
@@ -170,4 +184,23 @@ body{
     width: 25px;
     height: 25px;
     margin-top: 10px;
+}
+
+@media (max-width:900px){
+
+    .login-container-card{
+
+        width:100%;
+        justify-content:center;
+        padding:20px;
+
+    }
+
+    .login-card{
+
+        width:100%;
+        max-width:500px;
+
+    }
+
 }
