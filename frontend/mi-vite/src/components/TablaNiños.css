@@ -1,0 +1,107 @@
+
+.tabla-ninos{
+    background:#FFFFFF;
+    border-radius:15px;
+    padding:25px;
+    margin-top:30px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.tabla-ninos-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+
+.tabla-ninos-header h6{
+    color:#005A9C;
+    font-weight:700;
+}
+
+.tabla-ninos-header .MuiTextField-root{
+    width:320px;
+}
+
+
+.tabla-ninos-header .MuiOutlinedInput-root{
+    border-radius:10px;
+    background:#FFFFFF;
+}
+
+.tabla-ninos .MuiTableContainer-root{
+    border-radius:12px;
+}
+
+
+.tabla-ninos .MuiTableHead-root{
+    background:#005A9C;
+}
+
+
+.tabla-ninos .MuiTableHead-root .MuiTableCell-root{
+    color:#FFFFFF;
+    font-size:15px;
+    font-weight:600;
+}
+
+
+.tabla-ninos .MuiTableBody-root .MuiTableCell-root{
+    font-size:14px;
+    color:#374151;
+}
+
+
+.tabla-ninos .MuiTableBody-root .MuiTableRow-root{
+    transition:.25s;
+}
+
+.tabla-ninos .MuiTableBody-root .MuiTableRow-root:hover{
+    background:#F5F9FF;
+}
+
+.tabla-ninos .MuiChip-root{
+    font-size:12px;
+    font-weight:600;
+}
+
+.tabla-ninos .MuiIconButton-root{
+    transition:.2s;
+}
+
+
+.tabla-ninos .MuiIconButton-root:hover{
+    transform:scale(1.10);
+}
+
+.sin-registros{
+    text-align:center;
+    padding:30px;
+    color:#9CA3AF;
+    font-size:15px;
+}
+
+
+@media (max-width:768px){
+
+    .tabla-ninos{
+        padding:20px;
+    }
+
+    .tabla-ninos-header{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+    .tabla-ninos-header .MuiTextField-root{
+        width:100%;
+    }
+
+    .tabla-ninos .MuiTableContainer-root{
+        overflow-x:auto;
+    }
+
+}

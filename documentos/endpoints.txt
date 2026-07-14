@@ -1,0 +1,55 @@
+EndPoint's
+------------------------------------------------------------
+------------------------------------------------------------
+Endpoint Usuario
+- Crear Usuario  POST/usuario
+Descripción:
+	Permite registrar un nuevo usuario en el sistema. El endpoint recibe los datos necesarios para la creación de la cuenta, valida la información ingresada y almacena el usuario en la base de datos.
+Proceso:
+1. El frontend envía los datos del usuario.
+2. El sistema valida que los campos obligatorios estén completos.
+3. Verifica que el correo o nombre de usuario no exista.
+4. Genera la contraseña cifrada.
+5. Registra el usuario en la base de datos.
+6. Retorna la información del usuario creado.
+
+- Actualizar Usuario PUT/usuario
+- Actualizar dato especifico de Usuario PATCH/usuario
+- Eliminar Usuario DELETE/usuario
+
+Endpoint Cliente
+- Registrar cliente POST/usuario
+- Consultar informacion de clientes GET/usuario
+- Actualizar datos de clientes PUT/usuario
+- Actualizar datos especificos de cliente PATCH/usuario
+- Delete DELETE/usuario
+
+Endpoint niños
+- Registrar niños POST/niño
+- Registrar la hora de ingreso de los niños POST/niños/ingreso
+- Registrar la hora de salida del nino PUT/ninos/{id_niño}/salida
+
+Endpoint Reserva
+- Registrar reservas POST/reserva
+- Consultar reservas GET/reserva/disponibilidad
+- Actualizar reservas PUT/reserva
+- Actualizar dato especifico de reserva PATCH/reserva
+- Eliminar reserva DELETE/reserva
+
+Endpoint pagoVisita
+- Registrar pagoVisita POST/pagoVisita
+- Consultar pagoVisita GET/pagoVisita
+
+
+Endpoint pagoEventos
+- Registrar pagoEvento POST/pavoEvento
+- Consultar pagoEvento GET/pagoEvento
+
+Endpoint caja
+-Listar cierres GET/caja
+- Consultar cierre por fecha GET/caja?
+- Registrar caja apertura POST/caja/apertura
+-Consultar caja abierta GET/caja/abierta
+- Registrar caja Cierre POST/caja/{id_caja}/cierre
+- Consultar caja cierre de caja GET/cajas/{id_caja}
+

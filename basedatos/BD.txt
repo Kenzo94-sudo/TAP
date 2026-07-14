@@ -1,0 +1,159 @@
+BASE DE DATOS
+------------------------------------------------------------
+------------------------------------------------------------
+CREATE DATABASE playground_db;
+use playground_db;
+
+CREATE TABLE usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    correo VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    rol ENUM('ADMIN','RECEPCIONISTA') NOT NULL,
+    estado BOOLEAN DEFAULT TRUE,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE roles (
+    id_rol INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+    descripcion VARCHAR(150)
+
+);
+
+CREATE TABLE clientes (
+    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    dni CHAR(8) NOT NULL UNIQUE,
+    celular CHAR(9),
+    correo VARCHAR(100),
+    direccion VARCHAR(150),
+    distrito VARCHAR(80),
+    genero ENUM('M','F'),
+    observacion VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE ninos (
+    id_nino INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    nombres VARCHAR(80) NOT NULL,
+    apellidos VARCHAR(80) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    genero ENUM('M','F'),
+    alergias VARCHAR(255),
+    observaciones VARCHAR(255),
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_nino_cliente
+        FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+CREATE TABLE ingresos (
+    id_ingreso INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_nino INT NOT NULL,
+    fecha_ingreso DATE NOT NULL,
+    hora_ingreso TIME NOT NULL,
+    hora_salida TIME,
+    tiempo_permanencia INT,
+    estado ENUM('DENTRO','SALIO') DEFAULT 'DENTRO',
+    observaciones VARCHAR(250),
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_nino)
+        REFERENCES ninos(id_nino)
+);
+
+CREATE TABLE cotizaciones (
+    id_cotizacion INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    fecha_cotizacion DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fecha_evento DATE NOT NULL,
+    hora_inicio TIME NOT NULL,
+    hora_fin TIME NOT NULL,
+    cantidad_ninos INT NOT NULL,
+    paquete VARCHAR(100) NOT NULL,
+    costo_paquete DECIMAL(10,2) NOT NULL,
+    servicios_adicionales VARCHAR(255),
+    descuento DECIMAL(10,2) DEFAULT 0,
+    subtotal DECIMAL(10,2) NOT NULL,
+    igv DECIMAL(10,2) DEFAULT 0,
+    total DECIMAL(10,2) NOT NULL,
+    estado ENUM(
+        'PENDIENTE',
+        'ACEPTADA',
+        'RECHAZADA',
+        'VENCIDA'
+    ) DEFAULT 'PENDIENTE',
+    observaciones VARCHAR(255),
+    FOREIGN KEY (id_cliente)
+        REFERENCES clientes(id_cliente)
+);
+
+CREATE TABLE reservas (
+    id_reserva INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    fecha_evento DATE,
+    hora_inicio TIME,
+    hora_fin TIME,
+    cantidad_ninos INT,
+    tipo_evento VARCHAR(80),
+    estado ENUM('PENDIENTE','CONFIRMADA','CANCELADA'),
+    observacion VARCHAR(250),
+    FOREIGN KEY (id_cliente)
+    REFERENCES clientes(id_cliente)
+);
+
+CREATE TABLE caja (
+    id_caja INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    fecha DATE,
+    hora_apertura TIME,
+    monto_inicial DECIMAL(10,2),
+    hora_cierre TIME,
+    monto_final DECIMAL(10,2),
+    estado ENUM('ABIERTA','CERRADA'),
+    FOREIGN KEY (id_usuario)
+    REFERENCES usuarios(id_usuario)
+);
+
+CREATE TABLE pagos (
+    id_pago INT AUTO_INCREMENT PRIMARY KEY,
+    id_cliente INT NOT NULL,
+    id_caja INT NOT NULL,
+    monto DECIMAL(10,2),
+    metodo_pago ENUM('EFECTIVO','YAPE','PLIN','TARJETA'),
+    estado ENUM('PENDIENTE','PAGADO'),
+    fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_cliente)
+    REFERENCES clientes(id_cliente),
+    FOREIGN KEY (id_caja)
+    REFERENCES caja(id_caja)
+);
+
+CREATE TABLE paquetes_evento (
+    id_paquete INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(250),
+    duracion_horas DECIMAL(3,1) NOT NULL,
+    capacidad_minima INT,
+    capacidad_maxima INT,
+    precio_base DECIMAL(10,2) NOT NULL,
+    color_catalogo VARCHAR(30),
+    estado ENUM('ACTIVO','INACTIVO') DEFAULT 'ACTIVO'
+);
+
+CREATE TABLE servicios_adicionales (
+    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(250),
+    precio DECIMAL(10,2) NOT NULL,
+    estado ENUM('ACTIVO','INACTIVO') DEFAULT 'ACTIVO'
+);
+
+

@@ -1,0 +1,9 @@
+DTO's según las funcionalidades:
+
+ENTIDAD USUARIO: 
+
+UsuarioCreateDTO  --- > POST /usuario
+UsuarioUpdateDTO  ---> PUT /usuario/{id}
+UsuarioResponseDTO  
+LoginRequestDTO  
+LoginResponseDTO

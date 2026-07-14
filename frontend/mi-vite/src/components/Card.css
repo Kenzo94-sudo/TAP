@@ -1,0 +1,26 @@
+.card{
+    background:white;
+    border-radius:20px;
+    padding:25px;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.card-icon{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    background:#009FE3;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.card h2{
+    font-size:28px;
+    color:#003B6D;
+}
+.card p{
+    color:#777;
+}

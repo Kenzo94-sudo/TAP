@@ -1,0 +1,32 @@
+.dashboard{
+    display:flex;
+    flex-direction:row;
+    width:100%;
+    min-height:100vh;
+    background:#f4f8fc;
+}
+.dashboard-content{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    min-width:0;
+}
+.dashboard-body{
+    font-family: 'Poppins', sans-serif;
+    padding:35px;
+}
+.dashboard-body h1{
+    color:#1c355e;
+}
+.dashboard-body p{
+
+    margin-top:10px;
+    color:#666;
+    font-family: 'Poppins', sans-serif;
+}
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+    gap:25px;
+    margin-top:35px;
+}
