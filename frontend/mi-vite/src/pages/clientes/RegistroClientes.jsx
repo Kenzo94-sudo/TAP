@@ -1,4 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
+import {listarClientes,registrarCliente,actualizarCliente,
+    eliminarCliente} from "../../services/clienteService";
+
+import {listarNinos,registrarNino} from "../../services/ninoService";
 import "./RegistroClientes.css";
 
 import Sidebar from "../../components/Sidebar";
@@ -21,14 +26,13 @@ function RegistroClientes() {
     const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
 
 
-    const guardarCliente = (cliente)=>{
-        const nuevoCliente={
-            id: Date.now(),
-            ...cliente
-        };
-        setClientes([...clientes,
-            nuevoCliente
-        ]);
+    const guardarCliente = async (cliente) => {
+        try {
+            const nuevo = await registrarCliente(cliente);
+            setClientes([...clientes, nuevo]);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const editarCliente=(cliente)=>{
@@ -48,17 +52,14 @@ function RegistroClientes() {
         setClienteSeleccionado(cliente);
     };
 
-    const guardarNino = (nino)=>{
-            const nuevoNino={
-                id:Date.now(),
-                ...nino,
-                clienteId:clienteSeleccionado.id
-            };
-            setNinos(prev=>[
-                ...prev,
-                nuevoNino
-            ]);
-        };
+    const guardarNino = async (nino) => {
+        try {
+            const nuevo = await registrarNino(nino);
+            setNinos([...ninos, nuevo]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const editarNino=(nino)=>{
         console.log("Editar niño",nino);
@@ -72,6 +73,27 @@ function RegistroClientes() {
         );
     };
 
+            useEffect(() => {
+
+            if (clienteSeleccionado) {
+
+                cargarNinos();
+
+            }
+
+        }, [clienteSeleccionado]);
+
+        const cargarNinos = async () => {
+
+            const data = await listarNinos(
+
+                clienteSeleccionado.idCliente
+
+            );
+
+            setNinos(data);
+
+        };
 
     return (
 

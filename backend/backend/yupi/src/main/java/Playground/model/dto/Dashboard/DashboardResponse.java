@@ -1,4 +1,4 @@
-package Playground.controller.model.dto.Dashboard;
+package Playground.model.dto.Dashboard;
 
 
 import lombok.AllArgsConstructor;
