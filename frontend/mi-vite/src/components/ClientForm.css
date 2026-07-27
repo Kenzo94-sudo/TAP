@@ -1,15 +1,12 @@
 .client-form{
     background:#FFFFFF;
     border-radius:15px;
-    padding:25px;
+    padding:5px;
     box-shadow:0 4px 15px rgba(0,0,0,.08);
-    width:100%;
-   box-sizing:border-box;
-
 }
 
+
 .client-form .MuiTextField-root{
-    width:100%;
     margin-bottom:12px;
 }
 
@@ -17,9 +14,26 @@
     border-radius:10px;
 }
 
+.title-form {
+    display: flex;
+    align-items: center;
+    font-family: 'Poppins', 'sans-serif';
+    font-size: 1.2rem;
+    font-weight: 600;
+    position:relative;
+    color: #005A9C !important;
+    gap: 5px;
+}
+
+.title-form svg{
+    font-size: 45px;
+    position: relative;
+    color: #005A9C;
+}
+
 .client-form-buttons{
     display:flex;
-    justify-content:flex-end;
+    justify-content:flex-start;
     gap:15px;
     margin-top:20px;
 }
@@ -37,34 +51,18 @@
     color:white !important;
 }
 
-
 .btn-clear{
     border:1px solid #D1D5DB !important;
 }
 
-
-
-
-@media(max-width:768px){
-
+@media(max-width:798px){
     .client-form{
-
         padding:15px;
-
     }
-
-
     .client-form-buttons{
-
         flex-direction:column;
-
     }
-
-
     .client-form-buttons button{
-
         width:100%;
-
     }
-
 }

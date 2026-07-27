@@ -1,29 +1,35 @@
 .sidebar{
     width:260px;
-    min-width:260px;
+    min-width:80px;
     height:100vh;
     background:#005A9C;
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
     color:#fff;
     padding:25px;
     box-sizing:border-box;
-    position:sticky;
+    position: relative;
     top:0;
     font-family: 'Poppins', sans-serif;
     transition: width 0.3s ease;
 }
 
 .sidebar.close{
-    width: 80px;
-    min-width: 80px;
+    width: 90px;
+    min-width: 90px;
 }
 
 .sidebar.close .text{   
     opacity: 0;
     display: none;
 }
+
+.panda{
+    width: 50px;
+    height: 50px;
+    transition: .3s;
+}
+
 
 .sidebar-logo{ 
     position: relative;
@@ -32,7 +38,6 @@
     justify-content: space-between;
     margin-bottom: 40px;
     background-color: #005A9C;
-    border-radius: 50%;
 }
 
 .sidebar-logo h6{
@@ -121,24 +126,31 @@
 }
 
 .toggle{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 80px;
     border: none;
-    border-radius: 50%;
-    background: white;
-    color: #005A9C;
+    background: #005A9C;
+    color: #d6e3ec;
+    cursor: pointer;
+    position: absolute;
+    top: 6px;
+    left: 100%;
+    padding: 6px;
     cursor: pointer;
     display: flex;
-    align-items: center;
     justify-content: center;
-    box-shadow: 0 2px 8px rgba(0,0,0,2);
+    align-items: center;
     transition: .3s;
+    transform: translateX(22px) translateY(-30px);
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
 }
 
 .toggle svg{
-    font-size: 28px;
-    color: #005A9C;
+    width: 40px;
+    color: #f7f8f8;
     transition: transform 0.3s ease;
+    position: relative;
 }
 
 .toggle:hover{
@@ -149,17 +161,12 @@
     color:white;
 }
 
-.toggle svg{
-    transition: transform 0.3s ease;
-}
-
 .sidebar.close .toggle svg{
     transform: rotate(180deg);
+    position: relative;
+
 }
 
-.sidebar.close .toggle svg{
-    transform: rotate(180deg);
-}
 
 .text{
     white-space: nowrap;

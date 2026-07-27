@@ -73,6 +73,7 @@ CREATE TABLE reserva (
 disponibilidad 
     foreign key (id_cliente) 
     references cliente(id_cliente));
+
             
 CREATE TABLE cotizacion (
 	id_cotizacion int auto_increment primary key,

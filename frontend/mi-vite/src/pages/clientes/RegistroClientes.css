@@ -1,40 +1,75 @@
 .dashboard{
-
     display:flex;
-
     height:100vh;
-
     overflow:hidden;
 
 }
-
-
 
 .dashboard-content{
     flex:1;
     display:flex;
     flex-direction:column;
 }
+
 .dashboard-body{
     flex:1;
     padding:20px;
-    overflow:hidden;
+    overflow-y: scroll !important;
+    scrollbar-width: thin !important;
+    scrollbar-color: #005A9C !important;
+}
+
+.dashboard-body::-webkit-scrollbar{
+    width: var(--width, 35px);
+    background: #005A9C !important;
+
 }
 .registro-header{
     margin-bottom:20px;
 }
-.registro-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    height:calc(100vh - 190px);
+
+.registro{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+
+.tabs{
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+}
+
+.tabs button{
+    width: 200px;
+    font-family: 'Poppins', sans-serif;
+    font-size: medium;
+    border-top-right-radius: 24px;
+    border-top-left-radius: 24px;
+    margin: 0 5px; 
+    border: none;
+    cursor: pointer;
+    background-color: #d4d3d39a;
+    color:#030303;
+}
+
+.tabs button:hover{
+    background-color: #fff;
+}
+
+.tabs button svg{
+    position: relative;
+    top: 5px;
+    right: 5px;
+}
+
 .panel{
     background:#fff;
     border-radius:15px;
     padding:20px;
     overflow-y:auto;
 }
+
 .client-form{
     max-height:650px;
     overflow-y:auto;

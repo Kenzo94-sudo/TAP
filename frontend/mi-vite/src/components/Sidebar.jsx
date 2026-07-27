@@ -10,6 +10,8 @@ import PersonIcon from "@mui/icons-material/Person";
 import LogoutIcon from "@mui/icons-material/Logout";
 import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 
+import panda from '../assets/panda.png'
+
 function Sidebar(){
 
     const [isClosed, setIsClosed] = useState(true);
@@ -20,8 +22,7 @@ function Sidebar(){
 
         <aside className={`sidebar ${isClosed ? "close" : "" } `}>
             <div className="sidebar-logo">
-                <span className="text">YUPI</span>
-                <span className="text">Playground</span>
+               <img className="panda" src={panda} alt="Panda"/>
                 <button className="toggle" onClick={handleToggle}>
                     <ArrowForwardRoundedIcon/>
                 </button>
