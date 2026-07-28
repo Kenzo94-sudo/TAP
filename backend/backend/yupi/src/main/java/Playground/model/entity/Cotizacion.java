@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "cotizacion")
-public class Cotizacion {
+public class Cotizacion{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,16 +26,13 @@ public class Cotizacion {
     @Enumerated(EnumType.STRING)
     private EstadoCotizacion estadoCotizado;
 
-    @OneToOne(mappedBy = "cotizacion")
-    private PagoEvento pagoEvento;
 
-    public Cotizacion(Integer id_cotizacion, Cliente cliente, LocalDate fecha, BigDecimal monto_total, EstadoCotizacion estadoCotizado, PagoEvento pagoEvento) {
+    public Cotizacion(Integer id_cotizacion, Cliente cliente, LocalDate fecha, BigDecimal monto_total, EstadoCotizacion estadoCotizado) {
         this.id_cotizacion = id_cotizacion;
         this.cliente = cliente;
         this.fecha = fecha;
         this.monto_total = monto_total;
         this.estadoCotizado = estadoCotizado;
-        this.pagoEvento = pagoEvento;
     }
 
     public Cotizacion() {
@@ -81,11 +78,4 @@ public class Cotizacion {
         this.estadoCotizado = estadoCotizado;
     }
 
-    public PagoEvento getPagoEvento() {
-        return pagoEvento;
     }
-
-    public void setPagoEvento(PagoEvento pagoEvento) {
-        this.pagoEvento = pagoEvento;
-    }
-}
