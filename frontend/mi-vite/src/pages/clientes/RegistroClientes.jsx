@@ -1,4 +1,13 @@
+<<<<<<< HEAD
 import { useState } from "react";
+=======
+import { useState, useEffect } from "react";
+
+import {listarClientes,registrarCliente,actualizarCliente,
+    eliminarCliente} from "../../services/clienteService";
+
+import {listarNinos,registrarNino} from "../../services/ninoService";
+>>>>>>> master
 import "./RegistroClientes.css";
 
 import Sidebar from "../../components/Sidebar";
@@ -21,6 +30,7 @@ function RegistroClientes() {
     const [clienteSeleccionado, setClienteSeleccionado] = useState(null);
 
 
+<<<<<<< HEAD
     const guardarCliente = (cliente)=>{
         const nuevoCliente={
             id: Date.now(),
@@ -29,6 +39,15 @@ function RegistroClientes() {
         setClientes([...clientes,
             nuevoCliente
         ]);
+=======
+    const guardarCliente = async (cliente) => {
+        try {
+            const nuevo = await registrarCliente(cliente);
+            setClientes([...clientes, nuevo]);
+        } catch (error) {
+            console.error(error);
+        }
+>>>>>>> master
     };
 
     const editarCliente=(cliente)=>{
@@ -48,6 +67,7 @@ function RegistroClientes() {
         setClienteSeleccionado(cliente);
     };
 
+<<<<<<< HEAD
     const guardarNino = (nino)=>{
             const nuevoNino={
                 id:Date.now(),
@@ -59,6 +79,16 @@ function RegistroClientes() {
                 nuevoNino
             ]);
         };
+=======
+    const guardarNino = async (nino) => {
+        try {
+            const nuevo = await registrarNino(nino);
+            setNinos([...ninos, nuevo]);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+>>>>>>> master
 
     const editarNino=(nino)=>{
         console.log("Editar niño",nino);
@@ -72,6 +102,30 @@ function RegistroClientes() {
         );
     };
 
+<<<<<<< HEAD
+=======
+            useEffect(() => {
+
+            if (clienteSeleccionado) {
+
+                cargarNinos();
+
+            }
+
+        }, [clienteSeleccionado]);
+
+        const cargarNinos = async () => {
+
+            const data = await listarNinos(
+
+                clienteSeleccionado.idCliente
+
+            );
+
+            setNinos(data);
+
+        };
+>>>>>>> master
 
     return (
 

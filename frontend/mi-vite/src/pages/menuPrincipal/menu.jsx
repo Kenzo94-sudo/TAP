@@ -30,7 +30,11 @@ function MenuPrincipal() {
     const obtenerDatosDashboard = async()=>{
         try{
             const response = await axios.get(
+<<<<<<< HEAD
                 "http://localhost:8080/api/dashboard"
+=======
+                "http://localhost:8081/api/dashboard"
+>>>>>>> master
             );
             setDashboard(response.data);
         }catch(error){

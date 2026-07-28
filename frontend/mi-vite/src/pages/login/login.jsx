@@ -14,7 +14,18 @@ import background from "../../assets/login-background.png";
 import panda from "../../assets/panda.png";
 
 function Login() {
+<<<<<<< HEAD
 
+=======
+        const iniciarSesion = async () => {
+            try { const usuario = await login({ correo, password});
+                localStorage.setItem("usuario",
+                    JSON.stringify(usuario));
+                navigate("/menuPrincipal");
+            } catch (error) {
+                alert("Correo o contraseña incorrectos");}
+        };
+>>>>>>> master
     const navigate = useNavigate();
     const handleAccess = (event) => { navigate("/menu"); 
         event.preventDefault(); };

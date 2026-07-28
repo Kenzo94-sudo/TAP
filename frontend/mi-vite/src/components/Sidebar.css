@@ -12,6 +12,7 @@
     position:sticky;
     top:0;
     font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
     transition: width 0.3s ease;
 }
 
@@ -56,21 +57,39 @@
     background-color: dodgerblue;
 }
 
+=======
+}
+.sidebar-logo{ margin-bottom:35px;}
+.sidebar-logo h2{
+    font-size:32px;
+    font-weight:700;
+    letter-spacing:1px;
+    font-family: 'Poppins', sans-serif;
+}
+>>>>>>> master
 .sidebar-logo span{
     font-size:14px;
     opacity:.8;
     font-family: 'Poppins', sans-serif;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 .sidebar ul{
     list-style:none;
     padding:0;
     font-family: 'Poppins', sans-serif;
+<<<<<<< HEAD
     margin: 0;
 }
 
 .sidebar li{margin:12px 0px;}
 
+=======
+}
+.sidebar li{margin-bottom:12px;}
+>>>>>>> master
 .menu-link{
     display:flex;
     align-items:center;
@@ -83,6 +102,7 @@
     font-size:16px;
     font-weight:500;
 }
+<<<<<<< HEAD
 
 .menu-link:hover{background:#0D6EFD;}
 
@@ -99,6 +119,12 @@
     padding: 20px 0 0;
 }
 
+=======
+.menu-link:hover{background:#0D6EFD;}
+.menu-link.active{background:#0D6EFD;}
+.menu-link svg{font-size:24px;}
+.sidebar-footer{margin-top:30px;}
+>>>>>>> master
 .logout-btn{
     width:100%;
     display:flex;
@@ -106,14 +132,22 @@
     justify-content:center;
     gap:10px;
     border:none;
+<<<<<<< HEAD
     background:#22C55E;
     border-radius:24px;
     color:#fff;
     padding:14px;
+=======
+    border-radius:10px;
+    background:#EF4444;
+    color:#fff;
+    padding:12px;
+>>>>>>> master
     cursor:pointer;
     font-size:15px;
     font-weight:600;
     transition:.3s;
+<<<<<<< HEAD
 }
 
 .logout-btn:hover{
@@ -174,3 +208,8 @@
 .sidebar.close .logout-btn span{
     display: none;
 }
+=======
+    font-family: 'Poppins', sans-serif;
+}
+.logout-btn:hover{background:#DC2626;}
+>>>>>>> master

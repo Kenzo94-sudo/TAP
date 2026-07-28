@@ -15,6 +15,16 @@ CREATE TABLE usuarios (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+<<<<<<< HEAD
+=======
+CREATE TABLE roles (
+    id_rol INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE,
+    descripcion VARCHAR(150)
+
+);
+
+>>>>>>> master
 CREATE TABLE clientes (
     id_cliente INT AUTO_INCREMENT PRIMARY KEY,
     nombres VARCHAR(80) NOT NULL,
@@ -129,3 +139,27 @@ CREATE TABLE pagos (
     REFERENCES caja(id_caja)
 );
 
+<<<<<<< HEAD
+=======
+CREATE TABLE paquetes_evento (
+    id_paquete INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL,
+    descripcion VARCHAR(250),
+    duracion_horas DECIMAL(3,1) NOT NULL,
+    capacidad_minima INT,
+    capacidad_maxima INT,
+    precio_base DECIMAL(10,2) NOT NULL,
+    color_catalogo VARCHAR(30),
+    estado ENUM('ACTIVO','INACTIVO') DEFAULT 'ACTIVO'
+);
+
+CREATE TABLE servicios_adicionales (
+    id_servicio INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion VARCHAR(250),
+    precio DECIMAL(10,2) NOT NULL,
+    estado ENUM('ACTIVO','INACTIVO') DEFAULT 'ACTIVO'
+);
+
+
+>>>>>>> master
