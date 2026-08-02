@@ -2,6 +2,7 @@ package model.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "servicio_adicional")
@@ -22,4 +23,7 @@ public class ServicioAdicional {
 
     @Column(nullable = false)
     private BigDecimal precio;
+
+    @Column(nullable = false)
+    private List<Cumpleano> cumpleanos;
 }

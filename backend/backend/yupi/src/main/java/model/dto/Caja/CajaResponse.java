@@ -1,22 +1,19 @@
-package model.entity;
+package model.dto.Caja;
 
-import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "caja")
+@Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Caja {
+@RequiredArgsConstructor
+public class CajaResponse {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_caja;
     private BigDecimal cajaApertura;
     private BigDecimal cajaCierre;
@@ -25,5 +22,4 @@ public class Caja {
     private BigDecimal totalEgresos;
     private BigDecimal saldoFinal;
     private LocalDateTime fechaHoraCierre;
-
 }

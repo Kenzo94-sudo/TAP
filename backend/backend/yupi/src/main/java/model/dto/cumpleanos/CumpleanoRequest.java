@@ -1,9 +1,7 @@
 package model.dto.cumpleanos;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import model.dto.Cliente.ClienteRequest;
 import model.entity.Cliente;
 import model.entity.Enum.EstadoCumpleano;
 import model.entity.ServicioAdicional;
@@ -13,13 +11,15 @@ import java.time.LocalTime;
 import java.util.List;
 
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@RequiredArgsConstructor
 @Builder
 public class CumpleanoRequest {
 
-    private Integer Idcumpleano;
-    private Cliente cliente;
+    private ClienteRequest cliente;
     private LocalDate fechaEvento;
     private LocalTime horaInicio;
     private LocalTime horaFin;
