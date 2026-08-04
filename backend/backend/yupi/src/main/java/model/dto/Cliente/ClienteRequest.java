@@ -25,4 +25,5 @@ public class ClienteRequest {
     private String observacion;
     private List<NinoRequest> nino;
     private List<AcompañanteRequest> acompañante;
+
 }

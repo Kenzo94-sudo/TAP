@@ -4,12 +4,13 @@ import model.dto.Caja.CajaRequest;
 import model.dto.Caja.CajaResponse;
 import model.entity.Caja;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
+import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface CajaMapper {
 
     Caja toEntity (CajaRequest cajaRequest);
 
-    CajaResponse toResponse(Caja caja);
+    CajaResponse toResponse(Optional<Caja> caja);
 }

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +21,7 @@ public class Caja {
     private Integer id_caja;
     private BigDecimal cajaApertura;
     private BigDecimal cajaCierre;
-    private LocalDateTime fecha;
+    private LocalDate fecha;
     private BigDecimal totalIngresos;
     private BigDecimal totalEgresos;
     private BigDecimal saldoFinal;

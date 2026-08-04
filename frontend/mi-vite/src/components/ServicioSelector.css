@@ -1,0 +1,161 @@
+.selector-container {
+
+    margin-top: 20px;
+
+    padding: 15px;
+
+    background: #ffffff;
+
+    border-radius: 12px;
+
+    border: 1px solid #ddd;
+
+}
+
+
+
+.selector-container h3 {
+
+    margin-bottom: 15px;
+
+    color: #333;
+
+    font-size: 18px;
+
+}
+
+
+
+/* Contenedor de servicios */
+
+.lista-servicios {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 15px;
+
+}
+
+
+
+/* Tarjeta individual */
+
+.servicio-card {
+
+    padding: 12px;
+
+    background: #f8f8f8;
+
+    border-radius: 10px;
+
+    border: 1px solid #ddd;
+
+    transition: 0.3s;
+
+}
+
+
+
+.servicio-card:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+
+}
+
+
+
+/* Label */
+
+.servicio-card label {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    cursor: pointer;
+
+    gap: 10px;
+
+}
+
+
+
+/* Checkbox */
+
+.servicio-card input[type="checkbox"] {
+
+    width: 18px;
+
+    height: 18px;
+
+    cursor: pointer;
+
+}
+
+
+
+/* Nombre del servicio */
+
+.servicio-card span {
+
+    font-size: 15px;
+
+    color: #444;
+
+    flex: 1;
+
+}
+
+
+
+/* Precio */
+
+.servicio-card .precio {
+
+    font-weight: bold;
+
+    color: #ff8c00;
+
+}
+
+
+
+/* Mensaje sin servicios */
+
+.selector-container p {
+
+    color: #777;
+
+    text-align: center;
+
+    padding: 10px;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:700px) {
+
+
+    .lista-servicios {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .servicio-card label {
+
+        flex-direction: row;
+
+    }
+
+}

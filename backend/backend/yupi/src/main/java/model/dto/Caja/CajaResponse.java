@@ -16,8 +16,10 @@ public class CajaResponse {
     private Integer id_caja;
     private BigDecimal cajaApertura;
     private BigDecimal cajaCierre;
+    private LocalDate fecha;
     private LocalDateTime fechaHoraCierre;
     private BigDecimal totalIngresos;
+    private BigDecimal totalEgresos;
     private BigDecimal saldoFinal;
     private String username;
 }

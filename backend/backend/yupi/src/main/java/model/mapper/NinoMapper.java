@@ -12,4 +12,6 @@ public interface NinoMapper {
     Nino toEntity(NinoRequest ninoRequest);
     @Mapping( source="cliente.nombres", target="nombreCliente")
     NinoResponse toResponse(Nino nino);
+
+    void updateEntityFromRequest(NinoRequest ninoRequest, Nino ninoExistente);
 }

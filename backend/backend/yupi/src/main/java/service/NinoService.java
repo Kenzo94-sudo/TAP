@@ -1,5 +1,7 @@
 package service;
 
+import model.dto.Cliente.ClienteRequest;
+import model.dto.Cliente.ClienteResponse;
 import model.dto.Nino.NinoRequest;
 import model.dto.Nino.NinoResponse;
 

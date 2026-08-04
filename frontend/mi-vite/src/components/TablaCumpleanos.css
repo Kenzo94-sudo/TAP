@@ -1,0 +1,285 @@
+.tabla-container {
+
+    width: 95%;
+
+    margin: 30px auto;
+
+    padding: 25px;
+
+    background: #ffffff;
+
+    border-radius: 15px;
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+
+}
+
+
+
+.tabla-container h2 {
+
+    text-align: center;
+
+    color: #333;
+
+    margin-bottom: 25px;
+
+}
+
+
+
+/* Barra de búsqueda */
+
+.barra-busqueda {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    margin-bottom: 20px;
+
+}
+
+
+
+.barra-busqueda input {
+
+    width: 300px;
+
+    padding: 10px 15px;
+
+    border-radius: 8px;
+
+    border: 1px solid #ccc;
+
+    font-size: 15px;
+
+    outline: none;
+
+}
+
+
+
+.barra-busqueda input:focus {
+
+    border-color: #ff8c00;
+
+}
+
+
+
+/* Tabla */
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+    overflow: hidden;
+
+}
+
+
+
+thead {
+
+    background: #ff8c00;
+
+    color: white;
+
+}
+
+
+
+th {
+
+    padding: 14px;
+
+    text-align: center;
+
+    font-size: 15px;
+
+}
+
+
+
+td {
+
+    padding: 12px;
+
+    text-align: center;
+
+    border-bottom: 1px solid #eee;
+
+    color: #555;
+
+}
+
+
+
+tbody tr:hover {
+
+    background: #f8f8f8;
+
+}
+
+
+
+/* Estados */
+
+.estado {
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+}
+
+
+
+.estado.Pendiente {
+
+    background: #fff3cd;
+
+    color: #856404;
+
+}
+
+
+
+.estado.Confirmada {
+
+    background: #d4edda;
+
+    color: #155724;
+
+}
+
+
+
+.estado.Cancelada {
+
+    background: #f8d7da;
+
+    color: #721c24;
+
+}
+
+
+
+.estado.Finalizada {
+
+    background: #d1ecf1;
+
+    color: #0c5460;
+
+}
+
+
+
+/* Botones */
+
+button {
+
+    padding: 8px 14px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+
+    margin: 3px;
+
+}
+
+
+
+/* Botón detalle */
+
+.btn-detalle {
+
+    background: #2196f3;
+
+    color: white;
+
+}
+
+
+
+.btn-detalle:hover {
+
+    background: #1976d2;
+
+}
+
+
+
+/* Botón eliminar */
+
+.btn-eliminar {
+
+    background: #e53935;
+
+    color: white;
+
+}
+
+
+
+.btn-eliminar:hover {
+
+    background: #c62828;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:900px) {
+
+
+    .tabla-container {
+
+        overflow-x: auto;
+
+    }
+
+
+    table {
+
+        min-width: 900px;
+
+    }
+
+
+}
+
+
+
+@media(max-width:600px) {
+
+
+    .barra-busqueda {
+
+        justify-content: center;
+
+    }
+
+
+    .barra-busqueda input {
+
+        width: 100%;
+
+    }
+
+
+}

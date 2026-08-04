@@ -1,0 +1,225 @@
+.reserva-container {
+    width: 700px;
+    margin: 30px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+
+.reserva-container h2 {
+
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+    font-size: 28px;
+
+}
+
+
+
+/* Formulario */
+
+.reserva-container form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+}
+
+
+.reserva-container label {
+
+    font-weight: 600;
+    color: #444;
+    margin-top: 8px;
+
+}
+
+
+
+/* Inputs */
+
+.reserva-container input,
+.reserva-container select,
+.reserva-container textarea {
+
+
+    width: 100%;
+    padding: 10px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 8px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.3s;
+
+}
+
+
+
+.reserva-container input:focus,
+.reserva-container select:focus,
+.reserva-container textarea:focus {
+
+    border-color: #ff8c00;
+
+    box-shadow: 0 0 5px rgba(255,140,0,0.4);
+
+}
+
+
+
+/* Horarios */
+
+.horarios {
+
+    display: flex;
+
+    gap: 20px;
+
+}
+
+
+.horarios div {
+
+    flex: 1;
+
+}
+
+
+
+/* Servicios adicionales */
+
+.servicios {
+
+    display: grid;
+
+    grid-template-columns: repeat(2,1fr);
+
+    gap: 12px;
+
+    padding: 15px;
+
+    background: #f8f8f8;
+
+    border-radius: 10px;
+
+}
+
+
+
+.servicios div {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+}
+
+
+
+.servicios input {
+
+    width: auto;
+
+    cursor: pointer;
+
+}
+
+
+
+.servicios span {
+
+    font-size: 14px;
+
+    color: #555;
+
+}
+
+
+
+/* Textarea */
+
+textarea {
+
+    resize: none;
+
+    height: 90px;
+
+}
+
+
+
+/* Botón */
+
+.reserva-container button {
+
+    margin-top: 20px;
+
+    padding: 12px;
+
+    background: #ff8c00;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 10px;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+
+}
+
+
+
+.reserva-container button:hover {
+
+    background: #e67e00;
+
+}
+
+
+
+/* Responsive */
+
+@media(max-width:768px){
+
+
+    .reserva-container {
+
+        width: 90%;
+
+        padding: 20px;
+
+    }
+
+
+    .horarios {
+
+        flex-direction: column;
+
+    }
+
+
+    .servicios {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}

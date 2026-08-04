@@ -13,4 +13,6 @@ public interface ClienteMapper {
     Cliente toEntity(ClienteRequest clienteRequest);
 
     ClienteResponse toResponse(Cliente cliente);
+
+    void updateEntityFromRequest(ClienteRequest clienteRequest, Cliente clienteExistente);
 }

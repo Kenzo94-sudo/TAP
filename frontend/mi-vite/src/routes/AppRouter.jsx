@@ -10,6 +10,8 @@ function AppRouter() {
                 <Route path="/" element={<Login />} />
                 <Route path="/menu" element={<MenuPrincipal />} />
                 <Route path="/clientes" element={<RegistroClientes/>}/>
+                <Route path="/cumpleanos/:id" element={<DetalleCumpleano />}/>
+                
             </Routes>
         </BrowserRouter>
     );
