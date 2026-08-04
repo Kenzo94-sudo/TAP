@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 import repository.CumpleanoRepository;
 import service.CumpleanoService;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
+import java.util.Optional;
 
 @Service
 public class CumpleanoServiceImpl implements CumpleanoService {
@@ -20,10 +22,10 @@ public class CumpleanoServiceImpl implements CumpleanoService {
     @Override
     public CumpleanoResponse registrarCumpleano(CumpleanoRequest cumpleanoRequest) {
         if (cumpleanoRequest == null) {
-            throw new IllegalArgumentException("EL ID DEL CUMPLEAÑO NO PUEDE SER NULO");
+            throw new NullPointerException("Existen campos obligatorios sin completar. Por favor, ingrese la información requerida.");
         }
         if (cumpleanoRequest.getFechaEvento() == null || cumpleanoRequest.getFechaEvento().isBefore(ChronoLocalDate.from(LocalDateTime.now()))){
-            throw new IllegalArgumentException("LA FECHA DEL CUMPLEAÑOS NO PUEDE SER ANTERIOR A LA ACTUAL");
+            throw new NullPointerException("Error de validación: la fecha no puede ser menor a la fecha actual del sistema.");
         }
         Cumpleano cumpleano = cumpleanoMapper.toEntity(cumpleanoRequest);
         Cumpleano cumpleanoGuardado = cumpleanoRepository.save(cumpleano);
@@ -31,34 +33,29 @@ public class CumpleanoServiceImpl implements CumpleanoService {
     }
 
     @Override
-    public CumpleanoResponse consultarCumpleano(Integer id, CumpleanoRequest cumpleanoRequest) {
-        if (id == null) {
-            throw new IllegalArgumentException("EL ID DEL CUMPLEAÑO NO PUEDE SER NULO");
+    public CumpleanoResponse consultarCumpleano(Integer id, CumpleanoRequest cumpleanoRequest, LocalDate fechaEvento) {
+        if ( cumpleanoRequest == null) {
+            throw new NullPointerException("Existen campos obligatorios sin completar. Por favor, ingrese la información requerida");
         }
-        Cumpleano cumpleanoId = cumpleanoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("NO EXISTE CUMPLEAÑO CON ID:" + id));
-        return cumpleanoMapper.toResponse(cumpleanoId);
+        Cumpleano cumpleanoConsulta = cumpleanoRepository.findByFecha(fechaEvento)
+                .orElseThrow(() -> new NullPointerException("No existe un cumpleaños registrado con la fecha: " + fechaEvento));
+        return cumpleanoMapper.toResponse(cumpleanoConsulta);
     }
 
     @Override
-    public CumpleanoResponse consultarCumpleanoPorCliente(Integer idCliente) {
-        if( idCliente == null) {
-            throw  new IllegalArgumentException("EL ID DEL CLIENTE NO PUEDE SER NULO");
+    public CumpleanoResponse consultarCumpleanoPorCliente(String nombreCliente) {
+        if( nombreCliente == null) {
+            throw  new IllegalArgumentException("El nombre del cliente no puede estar vacío");
         }
-        Cumpleano cumpleano = cumpleanoRepository.findByClienteId(idCliente);
-        if(cumpleano == null){
-            throw new IllegalArgumentException("NO EXISTEN CLIENTES ASOCIADOS AL CUNPLEAÑO CON ID" + idCliente);
-        }
-        return cumpleanoMapper.toResponse(cumpleano);
+        Cumpleano cumpleanoCliente = cumpleanoRepository.findByNombre(nombreCliente)
+                .orElseThrow(() -> new NullPointerException("No existe un cumpleaño registrado con el nombre" + nombreCliente));
+
+        return cumpleanoMapper.toResponse(cumpleanoCliente);
     }
 
-    public void eliminarCumpleano(Integer id) {
-        if( id == null){
-            throw new IllegalArgumentException("EL ID NO PUEDE SER NULO");
-        }
-
-        Cumpleano cumpleano = cumpleanoRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("NO EXISTE CUMPLEANO CON ID"+ id));
-         cumpleanoRepository.delete(cumpleano);
+    public void eliminarCumpleano(CumpleanoRequest cumpleanoRequest, String nombreCliente) {
+        Cumpleano cumpleanoEliminar = cumpleanoRepository.findByNombre(nombreCliente)
+                .orElseThrow(() -> new IllegalArgumentException("No existe un cumpleaño agendado con el nombre:"+ nombreCliente));
+         cumpleanoRepository.delete(cumpleanoEliminar);
     }
 }

@@ -7,6 +7,8 @@ import model.mapper.CajaMapper;
 import org.springframework.stereotype.Service;
 import repository.CajaRepository;
 import service.CajaService;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Optional;
@@ -31,7 +33,7 @@ public class CajaServiceImpl implements CajaService {
             throw new IllegalArgumentException("FALTA DATOS EN EL CAMPO DE CAJA APERTURA");
         }
         Caja caja = cajaMapper.toEntity(cajaRequest);
-        caja.setFecha(LocalDateTime.now());
+        caja.setFecha(LocalDate.now());
         Caja cajaGuardado = cajaRepository.save(caja);
 
         return cajaMapper.toResponse(Optional.ofNullable(cajaGuardado));
@@ -69,10 +71,10 @@ public class CajaServiceImpl implements CajaService {
         }
 
         Caja cajaDia = cajaRepository.findByDia()
-                .orElseThrow(() -> new IllegalArgumentException("NO EXISTE LA CAJA"));
+                .orElseThrow(() -> new IllegalArgumentException("NO SE ENCUENTRAN DATOS EN ESTA FECHA. ESCOGER OTRA FECHA"));
 
-        LocalDateTime inicioFecha = fecha.with(LocalDateTime.MIN);
-        LocalDateTime finFecha = fecha.with(LocalDateTime.MAX);
+        LocalDateTime inicioFecha = fecha.with(LocalDate.MIN);
+        LocalDateTime finFecha = fecha.with(LocalDate.MAX);
 
         Caja cajaFecha =cajaRepository.findByFechaBetween(inicioFecha, finFecha)
                 .orElseThrow(() -> new IllegalArgumentException(" NO HAY DATOS EN LA FECHA SELECCIONADA"));
@@ -92,8 +94,8 @@ public class CajaServiceImpl implements CajaService {
             throw new IllegalArgumentException( "LA FECHA INGRESADA NO SE ENCUENTRA EN EL SISTEMA");
         }
 
-        LocalDateTime inicioFecha = fecha.with(LocalDateTime.MIN);
-        LocalDateTime finFecha = fecha.with(LocalDateTime.MAX);
+        LocalDateTime inicioFecha = fecha.with(LocalDate.MIN);
+        LocalDateTime finFecha = fecha.with(LocalDate.MAX);
 
         Caja caja = cajaRepository.findByFechaBetween(inicioFecha, finFecha)
                 .orElseThrow(() -> new IllegalArgumentException("NO HAY DATOS CON LA FECHA SELECCIONADA"));

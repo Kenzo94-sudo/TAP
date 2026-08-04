@@ -1,6 +1,7 @@
 package model.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 import model.entity.Enum.Estado;
 
 import java.time.LocalDate;
@@ -21,31 +22,10 @@ public class Visita {
     private Integer id_visita;
 
     @ManyToOne
-    @JoinColumn(name = "id_nino")
-    private Nino nino;
-
-    @ManyToOne
-    @JoinColumn(name = "id_cliente")
     private Cliente cliente;
 
-    @Column(nullable = false)
-    private LocalDate fecha;
-
-    @Column(nullable = false)
-    private LocalTime hora_ingreso;
-
-    @Column(nullable = false)
-    private LocalTime hora_salida;
-
-    @Column(nullable = false)
-    private int tiempo_contratado;
-
-    @Enumerated(EnumType.STRING)
-    private Estado estado;
-
-    @OneToMany(mappedBy = "visita")
-    private List<PagoVisita> pagoVisita;
-
+    @OneToOne
+    private Pago pago;
 }
 
 

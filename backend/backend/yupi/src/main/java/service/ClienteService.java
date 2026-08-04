@@ -10,8 +10,6 @@ public interface ClienteService {
 
     ClienteResponse registrarCliente(ClienteRequest clienteRequest);
     ClienteResponse consultarCliente(Cliente cliente, Integer id);
-
-
     ClienteResponse actualizarCliente(Integer id, ClienteRequest clienteRequest);
     ClienteResponse eliminarCliente(Integer id);
     ClienteResponse consultarClienteporNiño(Integer idNino);

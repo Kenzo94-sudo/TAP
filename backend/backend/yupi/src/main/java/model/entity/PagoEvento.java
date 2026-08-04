@@ -1,6 +1,7 @@
 package model.entity;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 import model.entity.Enum.MetodoPago;
 
 import java.math.BigDecimal;

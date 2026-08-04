@@ -3,6 +3,7 @@ package model.entity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
+import model.entity.Enum.CategoriaProducto;
 
 import java.math.BigDecimal;
 
@@ -20,5 +21,5 @@ public class CafetinInventario {
     private int cantidadProducto;
     private String tipoProducto;
     private BigDecimal precio;
-
+    private CategoriaProducto categoria;
 }

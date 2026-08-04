@@ -9,6 +9,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface CumpleanoMapper {
 
+    @Mapping( source = "cliente.nombres", target = "nombreCliente")
     Cumpleano toEntity(CumpleanoRequest cumpleanoRequest);
 
     @Mapping( source = "cliente.nombres", target="nombreCliente")
